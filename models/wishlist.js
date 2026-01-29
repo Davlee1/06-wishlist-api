@@ -7,20 +7,24 @@ const WishlistSchema = new mongoose.Schema(
       required: [true, "Please provide item name"],
       maxlength: 100,
     },
-    imageURL:{
-        type: String,
-      required: false,
-      maxlength: 100,   
-    },
-    link: {
+    imageURL: {
       type: String,
       required: false,
       maxlength: 100,
     },
+    link: {
+      type: String,
+      required: false,
+    },
     description: {
       type: String,
       required: false,
-      default: "pending",
+    },
+    //1 being most wanted/need, 5 being would like but not important
+    priority: {
+      type: String,
+      enum: ["1", "2", "3", "4", "5"],
+      default: "5",
     },
     createdBy: {
       type: mongoose.Types.ObjectId,
