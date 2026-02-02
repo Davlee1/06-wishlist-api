@@ -4,6 +4,9 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 
+const connectDB = require('./db/connect');
+const authenticateUser = require('./middleware/authentication');
+
 // extra packages
 
 // routers

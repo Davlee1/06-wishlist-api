@@ -20,7 +20,7 @@ const WishlistSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    //1 being most wanted/need, 5 being would like but not important
+    //1 = most wanted, 5 = least important
     priority: {
       type: String,
       enum: ["1", "2", "3", "4", "5"],

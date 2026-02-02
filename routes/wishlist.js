@@ -7,7 +7,7 @@ const {
   getAllItems,
   updateItem,
   getItem,
-} = require('../controllers/jobs')
+} = require('../controllers/wishlist')
 
 router.route('/').post(createItem).get(getAllItems)
 
