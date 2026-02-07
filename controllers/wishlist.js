@@ -1,4 +1,4 @@
-const Wishlist = require("../models/Wishlist.js");
+const Wishlist = require("../models/wishlist.js");
 const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, NotFoundError } = require("../errors");
 
