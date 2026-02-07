@@ -28,7 +28,7 @@ const getItem = async (req, res) => {
 
 const createItem = async (req, res) => {
   req.body.createdBy = req.user.userId;
-  const item = await Wishlist.create(req.body);
+  const item = await Wishlist.create({ ...req.body, createdBy: req.user.userId });
   res.status(StatusCodes.CREATED).json({ item });
 };
 const updateItem = async (req, res) => {
@@ -42,11 +42,11 @@ const updateItem = async (req, res) => {
     throw new BadRequestError("Item field cannot be empty");
   }
 
-  const update = await Wishlist.findByIdAndUpdate(
-    { _id: itemId, createdBy: userId },
-    req.body,
-    { new: true, runValidators: true },
-  );
+const update = await Wishlist.findOneAndUpdate(
+  { _id: itemId, createdBy: userId },
+  req.body,
+  { new: true, runValidators: true }
+);
 
   if (!update) {
     throw new NotFoundError(`No item with id ${itemId}`);
@@ -60,7 +60,7 @@ const deleteItem = async (req, res) => {
     params: { id: itemId },
   } = req;
 
-  const item = await Wishlist.findByIdAndRemove({ _id: jobId, createdBy: userId });
+  const item = await Wishlist.findOneAndRemove({ _id: itemId, createdBy: userId });
   if (!item) {
     throw new NotFoundError(`No item with id ${itemId}`);
   }
