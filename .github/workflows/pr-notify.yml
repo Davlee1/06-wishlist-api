@@ -1,0 +1,69 @@
+name: PR Review Notification
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get PR Info
+        id: pr
+        run: |
+          WEEK=$(echo "${{ github.head_ref }}" | grep -oE '[0-9]+' | head -1)
+          echo "week=${WEEK:-unknown}" >> $GITHUB_OUTPUT
+          echo "action=${{ github.event.action }}" >> $GITHUB_OUTPUT
+
+      - name: Add Review Checklist Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const week = '${{ steps.pr.outputs.week }}';
+            const action = '${{ steps.pr.outputs.action }}';
+            const prNumber = context.payload.pull_request.number;
+            const prFilesUrl = context.payload.pull_request.html_url + '/files';
+            const rubricUrl = 'https://github.com/Code-the-Dream-School/node-express-guidebook/blob/main/assignment-rubrics/';
+            const lessonUrl = 'https://github.com/Code-the-Dream-School/node-express-course/wiki';
+
+            let body;
+
+            if (action === 'opened') {
+              body = [
+                '## 📋 Week ' + week + ' Assignment Submitted',
+                '',
+                '**Review Resources:**',
+                '- [Rubric](' + rubricUrl + ')',
+                '- [Lesson Materials](' + lessonUrl + ')',
+                '- [PR Files Changed](' + prFilesUrl + ')',
+                '',
+                '**To review in Windsurf:**',
+                '1. Open this repo in Windsurf',
+                '2. Ask Cascade: "Review PR #' + prNumber + ' against the week ' + week + ' rubric"',
+                '',
+                '---',
+                '*Automated reminder - awaiting mentor review*'
+              ].join('\n');
+            } else {
+              const commitCount = context.payload.pull_request.commits;
+              body = [
+                '## 🔄 New commits pushed',
+                '',
+                'Student has pushed updates to this PR. **Re-review may be needed.**',
+                '',
+                '- **Total commits:** ' + commitCount,
+                '- [View latest changes](' + prFilesUrl + ')',
+                '',
+                '**To re-review in Windsurf:**',
+                '> "Review PR #' + prNumber + ' against the week ' + week + ' rubric - check if previous feedback was addressed"'
+              ].join('\n');
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: body
+            });
