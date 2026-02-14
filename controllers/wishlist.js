@@ -27,7 +27,6 @@ const getItem = async (req, res) => {
 };
 
 const createItem = async (req, res) => {
-  req.body.createdBy = req.user.userId;
   const item = await Wishlist.create({ ...req.body, createdBy: req.user.userId });
   res.status(StatusCodes.CREATED).json({ item });
 };
