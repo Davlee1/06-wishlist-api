@@ -38,9 +38,12 @@ app.use(cors());
 app.use(xss());
 
 // routes
+/*
 app.get("/", (req, res) => {
   res.send("Wishlist api");
 });
+*/
+app.use(express.static("public"));
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.use("/api/v1/auth", authRouter);

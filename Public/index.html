@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jobs List</title>
+  </head>
+
+  <body>
+    <h1>Wish List</h1>
+    <hr />
+    <p id="message"></p>
+    <hr />
+    <div id="logon-register" style="display: none">
+      <button type="button" id="logon">logon</button>
+      <button type="button" id="register">register</button>
+    </div>
+    <div id="logon-div" style="display: none">
+      <form>
+        <div>
+          <label for="email">email:</label>
+          <input type="email" id="email" />
+        </div>
+        <div>
+          <label for="password">password:</label>
+          <input type="password" id="password" />
+        </div>
+        <button type="button" id="logon-button">logon</button>
+        <button type="button" id="logon-cancel">cancel</button>
+      </form>
+    </div>
+    <div id="register-div" style="display: none">
+      <form>
+        <div>
+          <label for="name">name:</label>
+          <input type="text" id="name" />
+        </div>
+        <div>
+          <label for="email1">email:</label>
+          <input type="email" id="email1" />
+        </div>
+        <div>
+          <label for="password1">password:</label>
+          <input type="password" id="password1" />
+        </div>
+        <div>
+          <label for="password2">verify password:</label>
+          <input type="password" id="password2" />
+        </div>
+        <button type="button" id="register-button">register</button>
+        <button type="button" id="register-cancel">cancel</button>
+      </form>
+    </div>
+    <div id="item" style="display: none">
+      <p id="item"></p>
+      <table id="item-table">
+        <tr id="item-table-header">
+          <th>Item</th>
+          <th>Link</th>
+          <th>Description</th>
+          <th colspan="2"></th>
+        </tr>
+      </table>
+      <button type="button" id="add-item">add item</button>
+      <button type="button" id="logoff">log off</button>
+    </div>
+    <div id="edit-item" style="display: none">
+      <form>
+        <div>
+          <label for="item">item:</label>
+          <input type="text" id="item" />
+        </div>
+
+        <div>
+          <label for="imageURL">imageURL:</label>
+          <input type="text" id="imageURL" />
+        </div>
+
+        <div>
+          <label for="link">link:</label>
+          <input type="text" id="link" />
+        </div>
+
+        <div>
+          <label for="description">description:</label>
+          <input type="text" id="description" />
+        </div>
+
+        <div>
+          <label for="priority"
+            >priority:<br> (1 = most wanted, 5 = least wanted)</label
+          >
+          <input type="text" id="priority" />
+          <select id="priority">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div>
+          <label for="status">status:</label>
+          <select id="status">
+            <option value="pending">pending</option>
+            <option value="interview">interview</option>
+            <option value="declined">declined</option>
+          </select>
+        </div>
+        <button type="button" id="adding-job">add</button>
+        <button type="button" id="edit-cancel">cancel</button>
+      </form>
+    </div>
+    <script src="./index.js" type="module"></script>
+  </body>
+</html>
