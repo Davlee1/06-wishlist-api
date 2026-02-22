@@ -9,9 +9,10 @@ let addingItem = null;
 
 export const handleAddEdit = () => {
     addEditDiv = document.getElementById("edit-item");
-    company = document.getElementById("company");
-    position = document.getElementById("position");
-    status = document.getElementById("status");
+    imageURL = document.getElementById("imageURL");
+    link = document.getElementById("link");
+    description = document.getElementById("description");
+    priority = document.getElementById("priority");
     addingItem = document.getElementById("adding-item");
     const editCancel = document.getElementById("edit-cancel");
 
@@ -30,9 +31,10 @@ export const handleAddEdit = () => {
                             Authorization: `Bearer ${token}`,
                         },
                         body: JSON.stringify({
-                            company: company.value,
-                            position: position.value,
-                            status: status.value,
+                            imageURL: imageURL.value,
+                            link: link.value,
+                            description: description.value,
+                            priority: priority.value,
                         }),
                     });
 
