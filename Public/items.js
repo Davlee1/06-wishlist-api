@@ -60,9 +60,10 @@ export const showItems = async () => {
           let editButton = `<td><button type="button" class="editButton" data-id=${data.item[i]._id}>edit</button></td>`;
           let deleteButton = `<td><button type="button" class="deleteButton" data-id=${data.item[i]._id}>delete</button></td>`;
           let rowHTML = `
-            <td>${data.item[i].company}</td>
-            <td>${data.item[i].position}</td>
-            <td>${data.item[i].status}</td>
+            <td>${data.item[i].imageURL}</td>
+            <td>${data.item[i].link}</td>
+            <td>${data.item[i].description}</td>
+            <td>${data.item[i].priority}</td>
             <div>${editButton}${deleteButton}</div>`;
 
           rowEntry.innerHTML = rowHTML;
