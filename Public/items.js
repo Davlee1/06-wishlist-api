@@ -13,7 +13,7 @@ let itemsDiv = null;
 let itemsTable = null;
 let itemsTableHeader = null;
 
-export const handleJobs = () => {
+export const handleItems = () => {
   itemsDiv = document.getElementById("items");
   const logoff = document.getElementById("logoff");
   const additem = document.getElementById("add-item");
@@ -68,7 +68,7 @@ export const showItems = async () => {
           rowEntry.innerHTML = rowHTML;
           children.push(rowEntry);
         }
-        jobsTable.replaceChildren(...children);
+        itemsTable.replaceChildren(...children);
       }
     } else {
       message.textContent = data.msg;
