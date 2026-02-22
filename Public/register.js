@@ -1,25 +1,43 @@
-import { inputEnabled, setDiv } from "./index.js";
-import { showLogin } from "./login.js";
-import { showRegister } from "./register.js";
+import {
+  inputEnabled,
+  setDiv,
+  message,
+  token,
+  enableInput,
+  setToken,
+} from "./index.js";
+import { showLoginRegister } from "./loginRegister.js";
+import { showItems } from "./items.js";
 
-let loginRegisterDiv = null;
+let registerDiv = null;
+let name = null;
+let email1 = null;
+let password1 = null;
+let password2 = null;
 
-export const handleLoginRegister = () => {
-  loginRegisterDiv = document.getElementById("logon-register");
-  const login = document.getElementById("logon");
-  const register = document.getElementById("register");
+export const handleRegister = () => {
+  registerDiv = document.getElementById("register-div");
+  name = document.getElementById("name");
+  email1 = document.getElementById("email1");
+  password1 = document.getElementById("password1");
+  password2 = document.getElementById("password2");
+  const registerButton = document.getElementById("register-button");
+  const registerCancel = document.getElementById("register-cancel");
 
-  loginRegisterDiv.addEventListener("click", (e) => {
+  registerDiv.addEventListener("click", (e) => {
     if (inputEnabled && e.target.nodeName === "BUTTON") {
-      if (e.target === login) {
-        showLogin();
-      } else if (e.target === register) {
-        showRegister();
+      if (e.target === registerButton) {
+        showItems();
+      } else if (e.target === registerCancel) {
+        showLoginRegister();
       }
     }
   });
 };
 
-export const showLoginRegister = () => {
-  setDiv(loginRegisterDiv);
+export const showRegister = () => {
+  email1.value = null;
+  password1.value = null;
+  password2.value = null;
+  setDiv(registerDiv);
 };
