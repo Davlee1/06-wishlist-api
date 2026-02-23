@@ -8,6 +8,7 @@ import {
 } from "./index.js";
 import { showLoginRegister } from "./loginRegister.js";
 import { showAddEdit } from "./addEdit.js";
+import { deleteItem } from "./deleteItem.js";
 
 let itemsDiv = null;
 let itemsTable = null;
@@ -20,16 +21,24 @@ export const handleItems = () => {
   itemsTable = document.getElementById("item-table");
   itemsTableHeader = document.getElementById("item-table-header");
 
+
+
   itemsDiv.addEventListener("click", (e) => {
     if (inputEnabled && e.target.nodeName === "BUTTON") {
       if (e.target === additem) {
         showAddEdit(null);
       } else if (e.target === logoff) {
+        setToken(null);
+        itemsTable.replaceChildren(itemsTableHeader);
         showLoginRegister();
       }
     } else if (e.target.classList.contains("editButton")) {
         message.textContent = "";
         showAddEdit(e.target.dataset.id);
+      }
+      else if (e.target.classList.contains("deleteButton")) {
+        message.textContent = "";
+        deleteItem(e.target.dataset.id);
       }
     
   });

@@ -2,9 +2,10 @@ import { enableInput, inputEnabled, message, setDiv, token } from "./index.js";
 import { showItems } from "./items.js";
 
 let addEditDiv = null;
-let company = null;
-let position = null;
-let status = null;
+let imageURL = null;
+let link = null;
+let description = null;
+let priority = null;
 let addingItem = null;
 
 export const handleAddEdit = () => {
