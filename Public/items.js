@@ -68,8 +68,9 @@ export const showItems = async () => {
 
           let editButton = `<td><button type="button" class="editButton" data-id=${data.item[i]._id}>edit</button></td>`;
           let deleteButton = `<td><button type="button" class="deleteButton" data-id=${data.item[i]._id}>delete</button></td>`;
-          let rowHTML = `
-            <td>${data.item[i].imageURL}</td>
+          let rowHTML =
+           `<td>${data.item[i].item}</td>
+            <td><img src="${data.item[i].imageURL}" alt="Item image here" width="600" height="400"></td>
             <td>${data.item[i].link}</td>
             <td>${data.item[i].description}</td>
             <td>${data.item[i].priority}</td>

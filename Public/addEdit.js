@@ -2,6 +2,7 @@ import { enableInput, inputEnabled, message, setDiv, token } from "./index.js";
 import { showItems } from "./items.js";
 
 let addEditDiv = null;
+let item = null;
 let imageURL = null;
 let link = null;
 let description = null;
@@ -10,6 +11,7 @@ let addingItem = null;
 
 export const handleAddEdit = () => {
   addEditDiv = document.getElementById("edit-item");
+  item = document.getElementById("item");
   imageURL = document.getElementById("imageURL");
   link = document.getElementById("link");
   description = document.getElementById("description");
@@ -32,6 +34,7 @@ export const handleAddEdit = () => {
               Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
+              item: item.value,
               imageURL: imageURL.value,
               link: link.value,
               description: description.value,
@@ -44,6 +47,7 @@ export const handleAddEdit = () => {
             // 201 indicates a successful create
             message.textContent = "The item entry was created.";
 
+            item.value = "";
             imageURL.value = "";
             link.value = "";
             description.value = "";
@@ -65,7 +69,7 @@ export const handleAddEdit = () => {
       }
     }
 
-    if (e.target === addingJob) {
+    if (e.target === addingItem) {
       enableInput(false);
 
       let method = "POST";
@@ -84,6 +88,7 @@ export const handleAddEdit = () => {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
+            item: item.value,
             imageURL: imageURL.value,
             link: link.value,
             description: description.value,
@@ -100,7 +105,7 @@ export const handleAddEdit = () => {
             // a 201 is expected for a successful create
             message.textContent = "The item entry was created.";
           }
-
+          item.value = "";
           imageURL.value = "";
           link.value = "";
           description.value = "";
@@ -120,6 +125,7 @@ export const handleAddEdit = () => {
 
 export const showAddEdit = async (itemId) => {
   if (!itemId) {
+    item.value ="";
     imageURL.value = "";
     link.value = "";
     description.value = "";
@@ -142,6 +148,7 @@ export const showAddEdit = async (itemId) => {
 
       const data = await response.json();
       if (response.status === 200) {
+        item.value = data.item.item;
         imageURL.value = data.item.imageURL;
         link.value = data.item.link;
         description.value = data.item.description;

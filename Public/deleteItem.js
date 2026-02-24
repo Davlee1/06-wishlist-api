@@ -8,7 +8,7 @@ export const deleteItem = async (itemId) => {
     enableInput(false);
 
     try {
-      const response = await delete (`/api/v1/wishlist/${itemId}`,
+      const response = await fetch(`/api/v1/wishlist/${itemId}`,
       {
         method: "DELETE",
         headers: {
