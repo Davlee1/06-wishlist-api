@@ -20,11 +20,9 @@ export const deleteItem = async (itemId) => {
       const data = await response.json();
       if (response.status === 200) {
         message.textContent = "The item entry was successfully deleted";
-        addEditDiv.dataset.id = itemId;
+        showItems();
 
-        setDiv(addEditDiv);
       } else {
-        // might happen if the list has been updated since last display
         message.textContent = "The item entry was not found";
         showItems();
       }

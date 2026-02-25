@@ -67,57 +67,7 @@ export const handleAddEdit = () => {
         message.textContent = "";
         showItems();
       }
-    }
 
-    if (e.target === addingItem) {
-      enableInput(false);
-
-      let method = "POST";
-      let url = "/api/v1/wishlist";
-
-      if (addingItem.textContent === "update") {
-        method = "PATCH";
-        url = `/api/v1/wishlist/${addEditDiv.dataset.id}`;
-      }
-
-      try {
-        const response = await fetch(url, {
-          method: method,
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            item: item.value,
-            imageURL: imageURL.value,
-            link: link.value,
-            description: description.value,
-            priority: priority.value,
-          }),
-        });
-
-        const data = await response.json();
-        if (response.status === 200 || response.status === 201) {
-          if (response.status === 200) {
-            // a 200 is expected for a successful update
-            message.textContent = "The item entry was updated.";
-          } else {
-            // a 201 is expected for a successful create
-            message.textContent = "The item entry was created.";
-          }
-          item.value = "";
-          imageURL.value = "";
-          link.value = "";
-          description.value = "";
-          priority.value = "";
-          showItems();
-        } else {
-          message.textContent = data.msg;
-        }
-      } catch (err) {
-        console.log(err);
-        message.textContent = "A communication error occurred.";
-      }
       enableInput(true);
     }
   });
@@ -125,7 +75,7 @@ export const handleAddEdit = () => {
 
 export const showAddEdit = async (itemId) => {
   if (!itemId) {
-    item.value ="";
+    item.value = "";
     imageURL.value = "";
     link.value = "";
     description.value = "";
