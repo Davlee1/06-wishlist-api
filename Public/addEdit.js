@@ -26,6 +26,10 @@ export const handleAddEdit = () => {
 
         let method = "POST";
         let url = "/api/v1/wishlist";
+        if (addingItem.textContent === "update") {
+          method = "PATCH";
+          url = `/api/v1/wishlist/${addEditDiv.dataset.id}`;
+        }
         try {
           const response = await fetch(url, {
             method: method,
