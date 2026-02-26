@@ -1,4 +1,4 @@
-import { enableInput, inputEnabled, message, setDiv, token } from "./index.js";
+import { message, token } from "./index.js";
 import { showItems } from "./items.js";
 
 export const deleteItem = async (itemId) => {
@@ -24,6 +24,4 @@ export const deleteItem = async (itemId) => {
     message.textContent = "A communications error has occurred.";
     showItems();
   }
-
-  enableInput(true);
 };
