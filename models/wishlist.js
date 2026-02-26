@@ -25,6 +25,7 @@ const WishlistSchema = new mongoose.Schema(
       type: String,
       enum: ["1", "2", "3", "4", "5"],
       default: "5",
+      
     },
     createdBy: {
       type: mongoose.Types.ObjectId,
